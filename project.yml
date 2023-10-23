@@ -1,0 +1,19 @@
+parameters: {}
+environment: {}
+packages:
+    - name: showcase
+      shared: false
+      environment: {}
+      parameters: {}
+      annotations: {}
+      functions:
+        - name: rngaas
+          binary: false
+          main: "main"
+          runtime: python:default
+          web: true
+          webSecure: false
+          parameters: {}
+          environment: {}
+          annotations: {}
+          limits: {}
