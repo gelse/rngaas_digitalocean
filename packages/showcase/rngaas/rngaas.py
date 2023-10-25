@@ -6,7 +6,15 @@ import simplejson as json
 from random import seed
 from random import random
 
+
 def get_default_random(event, context):
+   """ creates a new random, seeded with the request-id and the client ip. 
+   default implementation. 
+   
+   parameters:
+   event: the event as given by the DigitalOcean function call
+   context: the context as given by the DigitalOcean function call
+   """
    clientip = get_client_ip(event)
    requestId = context.request_id
 
@@ -14,6 +22,12 @@ def get_default_random(event, context):
    return random()
 
 def get_client_ip(event):
+   """ returns the client ip of the caller
+   very simple implementation and buggy - for example x-forwarded-for can be a list, not a single address
+
+   parameters:
+   event: the event as given by the DigitalOcean function call
+   """
    http = event.get("http", None)
    if http:
       headers = http.get("headers", None)
@@ -25,8 +39,8 @@ def get_client_ip(event):
    return "unknown"
 
 def main(event, context):
-   name = event.get("name", "stranger")
-   
+   """ returns a random number betweent 0 and 1
+   """
    body = {
       "context": {
                "activationId": context.activation_id,
