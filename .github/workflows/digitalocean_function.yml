@@ -11,6 +11,8 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - name: Install doctl serverless
-        run: doctl serverless install
+        run: doctl serverless install && doctl serverless connect
+      - name: Checkout main
+        uses: actions/checkout@v2
       - name: Publish to DO
         run: doctl serverless deploy .
