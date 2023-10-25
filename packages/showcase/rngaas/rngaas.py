@@ -1,3 +1,7 @@
+##############################
+## this is just a very, very simple showcase of how functions work at DigitalOcean
+##############################
+
 import simplejson as json
 from random import seed
 from random import random

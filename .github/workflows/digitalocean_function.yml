@@ -1,0 +1,16 @@
+on: [push]
+name: deploy to digitalocean
+
+jobs:
+  publish_do_function:
+    name: Publish code as digitalocean function
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Install doctl serverless
+        run: doctl serverless install
+      - name: Publish to DO
+        run: doctl serverless deploy .
